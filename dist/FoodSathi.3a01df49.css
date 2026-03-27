@@ -1,0 +1,295 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #7c06c516;
+}
+
+.nav-bar {
+  z-index: 100;
+  background-color: #fff;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  padding: 0 20px;
+  display: flex;
+  position: sticky;
+  top: 0;
+  box-shadow: 0 4px 6px #0000001a;
+}
+
+.logo-container > img {
+  object-fit: cover;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+.nav-items {
+  justify-content: space-between;
+  width: 40%;
+  display: flex;
+}
+
+.nav-items > a {
+  color: #6a1b9a;
+  text-decoration: none;
+}
+
+.user-icons {
+  color: #6a1b9a;
+  cursor: pointer;
+  gap: 10px;
+  font-size: 1.2rem;
+  display: flex;
+}
+
+.res-container {
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  padding: 40px;
+  display: flex;
+}
+
+.res-card {
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid #f0f0f0;
+  border-radius: 15px;
+  width: 250px;
+  transition: transform .3s, box-shadow .3s;
+  overflow: hidden;
+}
+
+.res-card:hover {
+  transform: scale(.95);
+  box-shadow: 0 10px 20px #11021a33;
+}
+
+.res-img {
+  object-fit: cover;
+  width: 100%;
+  height: 150px;
+}
+
+.res-card-content {
+  padding: 12px;
+}
+
+.res-card h3 {
+  color: #333;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin: 0;
+  font-size: 18px;
+  overflow: hidden;
+}
+
+.rating-tag {
+  color: #fff;
+  background-color: #6a1b9a;
+  border-radius: 4px;
+  align-items: center;
+  margin-top: 8px;
+  padding: 2px 6px;
+  font-size: 12px;
+  font-weight: bold;
+  display: inline-flex;
+}
+
+.cuisines {
+  color: #666;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  margin-top: 8px;
+  font-size: 14px;
+  display: -webkit-box;
+  overflow: hidden;
+}
+
+.cost {
+  color: #4a148c;
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+.shimmer-container {
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px;
+  display: flex;
+}
+
+.shimmer-card {
+  background-color: #f3e5f5;
+  border: 1px solid #f0f0f0;
+  border-radius: 15px;
+  width: 250px;
+  height: 350px;
+  overflow: hidden;
+}
+
+.shimmer-img {
+  background-color: #e1bee7;
+  border-radius: 15px 15px 0 0;
+  width: 100%;
+  height: 160px;
+}
+
+@keyframes loading {
+  0% {
+    opacity: .5;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: .5;
+  }
+}
+
+.shimmer-card-content {
+  padding: 15px;
+}
+
+.shimmer-line {
+  background-color: #2a132e;
+  border-radius: 4px;
+  height: 15px;
+  margin: 15px 0;
+}
+
+.shimmer-line.name {
+  width: 75%;
+  height: 20px;
+}
+
+.shimmer-line.rating {
+  width: 30%;
+}
+
+.shimmer-line.cuisines {
+  width: 90%;
+}
+
+.shimmer-line.cost {
+  width: 40%;
+}
+
+.shimmer-img, .shimmer-line {
+  background: linear-gradient(90deg, #f3e5f5 25%, #e1bee7 50%, #f3e5f5 75%) 0 0 / 200% 100%;
+  animation: 1.5s infinite loading-animation;
+}
+
+@keyframes loading-animation {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.res-filter-container {
+  background-color: #b56ecf22;
+  border-bottom: 1px solid #e0e0e0;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 20px 40px;
+  display: flex;
+}
+
+.filter {
+  justify-content: center;
+  padding-top: 20px;
+  display: flex;
+}
+
+.filter-btn {
+  color: #6a1b9a;
+  cursor: pointer;
+  background-color: #fff;
+  border: 2px solid #6a1b9a;
+  border-radius: 20px;
+  height: 50px;
+  padding: 1px 20px;
+  font-weight: bold;
+  transition: all .3s;
+}
+
+.filter-btn:hover {
+  color: #fff;
+  background-color: #6a1b9a;
+  box-shadow: 0 4px 8px #6a1b9a4d;
+}
+
+.filter-btn.secondary {
+  color: #6a1b9a;
+  background-color: #fff;
+  border: 2px solid #6a1b9a;
+  margin-left: 10px;
+}
+
+.filter-btn.secondary:hover {
+  color: #fff;
+  background-color: #6a1b9a;
+  box-shadow: 0 4px 8px #6a1b9a4d;
+}
+
+.search {
+  justify-content: center;
+  gap: 10px;
+  margin: 20px;
+  display: flex;
+}
+
+.search-input {
+  color: #4a148c;
+  border: 2px solid #6a1b9a;
+  border-radius: 25px;
+  outline: none;
+  width: 300px;
+  padding: 10px 15px;
+}
+
+.search-btn {
+  color: #fff;
+  cursor: pointer;
+  background-color: #6a1b9a;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-weight: bold;
+}
+
+.search-btn:hover {
+  background-color: #4a148c;
+}
+
+.no-results {
+  text-align: center;
+  color: #6a1b9a;
+  width: 100%;
+  padding: 50px 20px;
+}
+
+.no-results h2 {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.no-results p {
+  color: #666;
+  margin-bottom: 20px;
+}
+/*# sourceMappingURL=FoodSathi.3a01df49.css.map */

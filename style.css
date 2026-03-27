@@ -28,28 +28,8 @@ body{
     object-fit: cover;
 }
 
-.search-bar{
-    display: flex;
-    flex: 0 1 400px; /* Allows search bar to grow but caps it at 400px */
-    margin: 0 20px;
-}
-.search-bar input {
-    width: 100%;
-    padding: 8px 15px;
-    border: 1px solid #ccc;
-    border-right: none;
-    border-radius: 5px 0 0 5px; /* Rounded only on the left side */
-    outline: none;
-}
 
-.btn {
-    padding: 8px 15px;
-    background-color: #6a1b9a;/* Swiggy-like orange */
-    color: white;
-    border: 1px solid #6a1b9a;
-    border-radius: 0 5px 5px 0; /* Rounded only on the right side */
-    cursor: pointer;
-}
+
 .nav-items{
     display: flex;
     width:40%;
@@ -221,6 +201,15 @@ body{
     100% { background-position: -200% 0; }
 }
 
+.res-filter-container {
+    display: flex;
+    justify-content: space-between; /* This pushes items to Left and Right */
+    align-items: center;
+    padding: 20px 40px;
+    background-color: #b56ecf22;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
 .filter{
     display: flex;
     justify-content: center;
@@ -255,4 +244,49 @@ body{
     background-color: #6a1b9a;
     color: white;
     box-shadow: 0 4px 8px rgba(106,27,154,0.3);
+}
+.search {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.search-input {
+    padding: 10px 15px;
+    width: 300px;
+    border: 2px solid #6a1b9a;
+    border-radius: 25px;
+    outline: none;
+    color: #4a148c;
+}
+
+.search-btn {
+    padding: 10px 20px;
+    background-color: #6a1b9a;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.search-btn:hover {
+    background-color: #4a148c;
+}
+.no-results {
+    width: 100%;
+    text-align: center;
+    padding: 50px 20px;
+    color: #6a1b9a; /* Your Purple */
+}
+
+.no-results h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.no-results p {
+    color: #666;
+    margin-bottom: 20px;
 }
