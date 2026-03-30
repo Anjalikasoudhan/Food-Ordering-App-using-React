@@ -1,7 +1,7 @@
  import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
  import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faCartShopping, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-
+import { Link } from "react-router-dom";
  export const Header=()=>{
     return(
         <div className="nav-bar">
@@ -12,9 +12,11 @@ import { faCartShopping, faMagnifyingGlass } from "@fortawesome/free-solid-svg-i
               
                 
                 <div className="nav-items">
-                    <a href="#">Home</a>
-                    <a href="#">About</a>
-                    <a href="#">Contact</a>
+                    <ul>
+                        <li><Link to="/">Home</Link></li>
+                         <li><Link to="/about">About</Link></li>
+                          <li><Link to="/contact">Contact</Link></li>
+                    </ul>
                     <div className="user-icons">
                     <FontAwesomeIcon icon={faUser} />
                    <FontAwesomeIcon icon={faCartShopping} />

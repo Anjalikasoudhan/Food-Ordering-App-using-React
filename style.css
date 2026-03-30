@@ -30,14 +30,20 @@ body{
 
 
 
-.nav-items{
+.nav-items {
+    display: flex;
+    width:40%;
+    justify-content: space-between;
+
+}
+.nav-items ul {
     display: flex;
     width:40%;
     justify-content: space-between;
 
 }
 
-.nav-items >a{
+.nav-items >ul >li{
     text-decoration: none;
     color: #6a1b9a;
 }
