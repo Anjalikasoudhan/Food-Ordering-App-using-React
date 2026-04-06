@@ -7,6 +7,8 @@ import { About } from "./components/About";
 import { Contact } from "./components/Contact";
 import { Error } from "./components/Error";
 import { RestaurantMenu } from "./components/RestaurantMenu";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
 
 
 
@@ -14,10 +16,12 @@ import { RestaurantMenu } from "./components/RestaurantMenu";
 
 const App=()=>{
      return(
+        <Provider store={appStore}>
         <div className="app">
         <Header />
         <Outlet />
         </div>
+        </Provider>
      )
 }
 const appRouter=createBrowserRouter([

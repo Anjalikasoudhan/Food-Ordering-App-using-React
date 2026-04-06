@@ -1,65 +1,62 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { IMG_CDN_URL } from "../utils/constants";
-import { Shimmer } from "./Shimmer";
-
-// 1. Import the specific constant from your mockData.js
-import { mockRestaurants } from "../utils/mockData"; 
+import { Shimmer } from "./ShimmerBody";
+import { ResCard } from "./ResCard"; 
+import useRestaurants from "../utils/useRestaurants"; // Fixed import name
+import { filterTopRated, filterFastDelivery, searchRestaurants } from "../utils/filterHelper";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 export const Body = () => {
-    const [allRestaurants, setAllRestaurants] = useState([]);
-    const [filteredRestaurants, setFilteredRestaurants] = useState([]);
     const [searchTxt, setSearchTxt] = useState("");
-
-    useEffect(() => {
-        // 2. Simply call the function to load the local data
-        loadLocalData();
-    }, []);
-
-    const loadLocalData = () => {
-        // 3. Use resList instead of the fetch 'json'
-        const mainCard = mockRestaurants?.data?.cards.find(
-            (c) => c?.card?.card?.gridElements?.infoWithStyle?.restaurants
+     const onlineStatus=useOnlineStatus();
+    // Ensure these match what your hook returns!
+    const { allRestaurants, filteredRestaurants, setFilteredRestaurants } = useRestaurants();                                                                                                 
+    if (!allRestaurants || allRestaurants.length === 0) return <Shimmer />;
+   
+    if(onlineStatus==false){
+        return(
+           <div className="offline-stats">
+            <h1>You are Offline!! .Please get a Good Internet Connection</h1>
+           </div>
         );
-        
-        const resData = mainCard?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-
-        setAllRestaurants(resData || []);
-        setFilteredRestaurants(resData || []);
-    };
-
-    if (allRestaurants.length === 0) return <Shimmer />;
-
+    }
     return (
         <div className="body">
-            {/* ... rest of your search and filter UI code remains exactly the same ... */}
+            <div className="controls">
+                <div className="search-wrap">
+                    <input
+                        type="text"
+                        placeholder="Search..."
+                        value={searchTxt}
+                        onChange={(e) => {
+                            const val = e.target.value;
+                            setSearchTxt(val);
+                            // Filtering logic
+                            const searchResult = searchRestaurants(allRestaurants, val);
+                            setFilteredRestaurants(searchResult);
+                        }}
+                    />
+                </div>
+
+                <button className="filter-btn" onClick={() => setFilteredRestaurants(allRestaurants)}>
+                    All
+                </button>
+                
+                <button className="filter-btn" onClick={() => setFilteredRestaurants(filterTopRated(allRestaurants))}>
+                    Top Rated
+                </button>
+
+                <button className="filter-btn" onClick={() => setFilteredRestaurants(filterFastDelivery(allRestaurants))}>
+                    Fast Delivery
+                </button>
+            </div>
+
             <div className="res-container">
                 {filteredRestaurants.map((res) => (
-                    <Link
-                        key={res.info.id}
-                        to={"/restaurant/" + res.info.id}
-                        style={{ textDecoration: "none", color: "inherit" }}
-                    >
+                    <Link key={res.info.id} to={"/restaurant/" + res.info.id} style={{textDecoration: "none"}}>
                         <ResCard {...res.info} />
                     </Link>
                 ))}
-            </div>
-        </div>
-    );
-};
-
- const ResCard=({name,avgRating,cloudinaryImageId,cuisines,costForTwo})=>{
-    return(
-        <div className="res-card">
-            <img className="res-img"
-                 src={IMG_CDN_URL+cloudinaryImageId}
-                 alt={name}
-                 />
-            <div className="res-card-content">
-               <h3>{name}</h3>
-               <h4 className="rating-tag"> ⭐{avgRating}</h4>
-               <p className="cuisines">{cuisines?.join(",")}</p>
-               <p className="cost">{costForTwo}</p>
             </div>
         </div>
     );
