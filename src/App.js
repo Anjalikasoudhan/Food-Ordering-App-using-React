@@ -9,10 +9,7 @@ import { Error } from "./components/Error";
 import { RestaurantMenu } from "./components/RestaurantMenu";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
-
-
-
-
+import Cart from "./components/Cart";
 
 const App=()=>{
      return(
@@ -44,6 +41,10 @@ const appRouter=createBrowserRouter([
         {
             path:"/restaurant/:resId", //The : makes it dynamic 
             element:<RestaurantMenu />
+        },
+        {
+            path:"/cart",
+            element:<Cart />
         }
     ],
    },

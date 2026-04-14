@@ -1,40 +1,100 @@
- import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
- import { faUser } from "@fortawesome/free-regular-svg-icons";
-import { faCartShopping, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser, faCircleUser } from "@fortawesome/free-regular-svg-icons";
+import { faCartShopping, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import FoodLogo from "../assets/FoodLogo.png";
-import { useSelector } from "react-redux";
+import Logo from "./Logo";
+import { useSelector, useDispatch } from "react-redux";
+import { login, logout } from "../utils/authSlice";
 import useOnlineStatus from "../utils/useOnlineStatus";
- export const Header=()=>{
-    const cartItems = useSelector((store) => store.cart.items);
-    const onlineStatus=useOnlineStatus();
-   console.log(FoodLogo);
-    return(
-        <div className="nav-bar">
-            <div className="logo-container">
-              
-               <img src={FoodLogo.default} alt="Food Saathi" className="logo-img" />
-              
+
+export const Header = () => {
+  const [showUserMenu, setShowUserMenu] = useState(false);
+  const cartItems = useSelector((store) => store.cart.items);
+  const { isLoggedIn, user } = useSelector((store) => store.auth);
+  const dispatch = useDispatch();
+  const onlineStatus = useOnlineStatus();
+
+  const totalQty = cartItems.reduce((acc, curr) => acc + curr.quantity, 0);
+
+  const handleAuth = () => {
+    if (isLoggedIn) {
+      dispatch(logout());
+      setShowUserMenu(false);
+    } else {
+      dispatch(login({ name: "Anjali Kasoudhan", email: "anjali@foodsathi.com" }));
+    }
+  };
+
+  return (
+    <div className="nav-bar">
+      {/* Logo */}
+      <div className="logo-container">
+        <Link to="/">
+          <Logo />
+        </Link>
+      </div>
+
+      {/* Navigation */}
+      <div className="nav-items">
+        <ul>
+          <li>
+            <span className="online-status">
+              {onlineStatus ? "✅ Online" : "🔴 Offline"}
+            </span>
+          </li>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/about">About</Link></li>
+          <li><Link to="/contact">Contact</Link></li>
+        </ul>
+
+        <div className="user-icons">
+          {/* Auth Section */}
+          <div className="auth-section">
+            {isLoggedIn && (
+              <div
+                className="user-name-label"
+                onClick={() => setShowUserMenu(!showUserMenu)}
+              >
+                Hi, {user.name.split(" ")[0]}
+              </div>
+            )}
+
+            <div
+              className="icon-btn"
+              onClick={() => (isLoggedIn ? setShowUserMenu(!showUserMenu) : handleAuth())}
+            >
+              <FontAwesomeIcon icon={isLoggedIn ? faCircleUser : faUser} />
             </div>
-            
-            <div className="nav-items">
-                    <ul>
-                        <li>Online Status: {onlineStatus?"✅":"🔴"} </li>
-                        <li><Link to="/">Home</Link></li>
-                         <li><Link to="/about">About</Link></li>
-                          <li><Link to="/contact">Contact</Link></li>
-                    </ul>
-                    <div className="user-icons">
-                      <div className="icon-btn">
-                         <FontAwesomeIcon icon={faUser} />
-                      </div>
-                      <div className="icon-btn">
-                          <FontAwesomeIcon icon={faCartShopping} />
-                            <span className="cart-badge">{cartItems.length}</span>
-                         </div>
-                   </div>
-                </div>
-        
+
+            {/* User Details Popup */}
+            {isLoggedIn && showUserMenu && (
+              <div className="user-details-popup">
+                <h4>{user.name}</h4>
+                <p>{user.email}</p>
+                <div className="popup-divider"></div>
+                <button className="btn-logout" onClick={handleAuth}>
+                  <FontAwesomeIcon icon={faRightFromBracket} /> LOGOUT
+                </button>
+              </div>
+            )}
+
+            {!isLoggedIn && (
+              <button className="btn-login" onClick={handleAuth}>
+                LOGIN
+              </button>
+            )}
+          </div>
+
+          {/* Cart Icon */}
+          <Link to="/cart">
+            <div className="icon-btn">
+              <FontAwesomeIcon icon={faCartShopping} />
+              <span className="cart-badge">{totalQty}</span>
+            </div>
+          </Link>
         </div>
-    )
-}
+      </div>
+    </div>
+  );
+};

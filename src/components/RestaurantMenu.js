@@ -3,12 +3,21 @@ import { IMG_CDN_URL } from "../utils/constants";
 import { MenuShimmer } from "./ShimmerMenu";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/cartSlice";
 
 
 export const RestaurantMenu = () => {
   // 1. Get the resId from the URL
   const { resId } = useParams();
   const restaurantInfo=useRestaurantMenu(resId)
+
+  const dispatch = useDispatch();
+
+  const handleAddItem = (item) => {
+    // Dispatch an action
+    dispatch(addItem(item));
+  };
 
   if (restaurantInfo === null) {
     return <MenuShimmer />;
@@ -106,10 +115,15 @@ export const RestaurantMenu = () => {
       {imageId && (
         <img src={IMG_CDN_URL + imageId} className="item-img" alt={name} />
       )}
-      <button className="add-button">ADD</button>
+      <button 
+        className="add-button"
+        onClick={() => handleAddItem(item)}
+      >
+        ADD
+      </button>
     </div>
   </div>
-   );
+    );
   })}
   </div>
 </div>
