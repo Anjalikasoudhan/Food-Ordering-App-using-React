@@ -11,13 +11,19 @@ import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
 import Cart from "./components/Cart";
 
+import { Footer } from "./components/Footer";
+import { ThemeProvider } from "./utils/ThemeContext";
+
 const App=()=>{
      return(
         <Provider store={appStore}>
+        <ThemeProvider>
         <div className="app">
         <Header />
         <Outlet />
+        <Footer />
         </div>
+        </ThemeProvider>
         </Provider>
      )
 }

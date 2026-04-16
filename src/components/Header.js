@@ -1,15 +1,18 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faCircleUser } from "@fortawesome/free-regular-svg-icons";
+import { faUser, faCircleUser, faMoon, faSun } from "@fortawesome/free-regular-svg-icons";
 import { faCartShopping, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import Logo from "./Logo";
 import { useSelector, useDispatch } from "react-redux";
 import { login, logout } from "../utils/authSlice";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import ThemeContext from "../utils/ThemeContext";
 
 export const Header = () => {
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const { theme, toggleTheme } = useContext(ThemeContext);
+  
   const cartItems = useSelector((store) => store.cart.items);
   const { isLoggedIn, user } = useSelector((store) => store.auth);
   const dispatch = useDispatch();
@@ -49,6 +52,11 @@ export const Header = () => {
         </ul>
 
         <div className="user-icons">
+          {/* Theme Toggle */}
+          <div className="icon-btn theme-toggle" onClick={toggleTheme}>
+            <FontAwesomeIcon icon={theme === "light" ? faMoon : faSun} />
+          </div>
+
           {/* Auth Section */}
           <div className="auth-section">
             {isLoggedIn && (

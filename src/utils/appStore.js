@@ -9,4 +9,10 @@ const appStore=configureStore({
     },
 });
 
+// Save cart items to localStorage on every update
+appStore.subscribe(() => {
+    const items = appStore.getState().cart.items;
+    localStorage.setItem("cartItems", JSON.stringify(items));
+});
+
 export default appStore

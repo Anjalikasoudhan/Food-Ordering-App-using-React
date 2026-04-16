@@ -4,22 +4,46 @@
    DESIGN TOKENS (CSS Variables)
    ================================================ */
 :root {
-  --bg-deep: #0d0b1a;
-  --bg-card: rgba(255, 255, 255, 0.03);
-  --bg-header: #1a1730;
-  --white: #f0ebff;
-  --gold: #fac775;
-  --lavender: #c4a8ff;
-  --muted: rgba(255, 255, 255, 0.45);
-  --border-soft: rgba(167, 139, 250, 0.15);
-  --danger: #ef4444;
-  --success: #22c55e;
+  /* Common Tokens */
   --font-display: 'Playfair Display', serif;
   --font-body: 'Inter', 'Segoe UI', sans-serif;
   --radius-sm: 10px;
   --radius-md: 16px;
   --radius-lg: 24px;
   --radius-xl: 40px;
+  --danger: #ef4444;
+  --success: #22c55e;
+  --gold: #fac775;
+  --lavender: #c4a8ff;
+  --white: #ffffff;
+  --black: #000000;
+  
+  /* Transition */
+  --theme-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark-theme {
+  --bg-deep: #0d0b1a;
+  --bg-card: rgba(255, 255, 255, 0.03);
+  --bg-header: #1a1730;
+  --text-main: #f0ebff;
+  --text-muted: rgba(255, 255, 255, 0.45);
+  --border-soft: rgba(167, 139, 250, 0.15);
+  --primary: #7c3aed;
+  --primary-light: #a78bfa;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.light-theme {
+  --bg-deep: #f8f7ff;
+  --bg-card: #ffffff;
+  --bg-header: #ffffff;
+  --text-main: #111827;
+  --text-muted: #4b5563;
+  --border-soft: rgba(124, 58, 237, 0.1);
+  --primary: #7c3aed;
+  --primary-light: #6d28d9;
+  --shadow: 0 10px 30px rgba(124, 58, 237, 0.08);
 }
 
 /* ================================================
@@ -29,13 +53,15 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  transition: var(--theme-transition);
 }
 
 body {
   font-family: var(--font-body);
   background: var(--bg-deep);
-  color: var(--white);
+  color: var(--text-main);
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 /* ================================================
@@ -94,7 +120,7 @@ body {
 
 .nav-items ul li a {
   text-decoration: none;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--text-muted);
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.3px;
@@ -128,7 +154,7 @@ body {
   cursor: pointer;
   transition: background 0.2s, border-color 0.2s;
   position: relative;
-  color: #c4b5fd;
+  color: var(--primary-light);
   font-size: 16px;
 }
 
@@ -153,14 +179,14 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid #0d0b1a;
+  border: 2px solid var(--bg-deep);
 }
 
 /* ================================================
    BODY PAGE  (Body.jsx)
    ================================================ */
 .body {
-  background: #0d0b1a;
+  background: var(--bg-deep);
   min-height: 100vh;
   padding: 2.8rem 2.5rem;
 }
@@ -379,7 +405,7 @@ button:active {
 .res-card-content h3 {
   font-size: 15px;
   font-weight: 600;
-  color: #f0ebff;
+  color: var(--text-main);
   margin-bottom: 8px;
   white-space: nowrap;
   overflow: hidden;
@@ -402,19 +428,19 @@ button:active {
   font-weight: 600;
   background: rgba(167, 139, 250, 0.1);
   border: 1px solid rgba(167, 139, 250, 0.2);
-  color: #c4b5fd;
+  color: var(--primary-light);
   padding: 3px 10px;
   border-radius: 20px;
 }
 
 .delivery-time {
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.3);
+  color: var(--text-muted);
 }
 
 .cuisines {
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.32);
+  color: var(--text-muted);
   margin-bottom: 5px;
   white-space: nowrap;
   overflow: hidden;
@@ -1825,3 +1851,119 @@ button:active {
   font-size: 0.9rem;
   margin-bottom: 0;
 }
+
+/* ================================================
+   FOOTER
+   ================================================ */
+.footer {
+  background: var(--bg-header);
+  padding: 4rem 2.5rem 2rem;
+  border-top: 1px solid var(--border-soft);
+  margin-top: 4rem;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.footer-brand {
+  flex: 1;
+  min-width: 300px;
+}
+
+.footer-tagline {
+  margin: 1.5rem 0;
+  color: var(--text-muted);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.social-links {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.social-icon {
+  color: var(--primary-light);
+  font-size: 1.4rem;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.social-icon:hover {
+  color: var(--gold);
+  transform: translateY(-3px);
+}
+
+.footer-links {
+  display: flex;
+  gap: 4rem;
+  flex: 2;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.link-group h3 {
+  color: var(--text-main);
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  font-family: var(--font-display);
+}
+
+.link-group ul {
+  list-style: none;
+}
+
+.link-group ul li {
+  margin-bottom: 0.8rem;
+}
+
+.link-group ul li a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.link-group ul li a:hover {
+  color: var(--primary-light);
+}
+
+.footer-bottom {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-soft);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ================================================
+   MOBILE ENHANCEMENTS
+   ================================================ */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .footer-links {
+    justify-content: flex-start;
+    gap: 2.5rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+}

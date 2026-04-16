@@ -33,7 +33,7 @@ Plaintext
     - mockData.js
   - App.js
   - index.css
-💡 What I Learned (Interview Points)
+💡 What I Learned 
 State vs. Variables: Understood why useState is required to trigger UI re-renders.
 
 Side Effects: Mastered useEffect to handle API calls and prevent infinite render loops.
