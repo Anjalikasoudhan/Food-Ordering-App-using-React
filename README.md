@@ -47,4 +47,4 @@ Clone the repo: git clone
 
 Install dependencies: npm install
 
-Start the app: npx parcel index.ht
+Start the app: npx parcel index.html
