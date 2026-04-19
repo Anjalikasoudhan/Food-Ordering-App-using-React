@@ -1,50 +1,48 @@
-# Food-Ordering-App-using-React
-A high-performance React.js food ordering app featuring live Swiggy API integration, custom Shimmer UI, and a unique Purple &amp; White brand identity.
-🚀 Key Features
-Live API Integration: Fetches real-time restaurant data from Bengaluru using the Swiggy Public API.
+# 🍕 FoodSathi — Smart Food Ordering Platform
 
-Custom Shimmer UI: A professional "skeleton" loading state that uses CSS keyframe animations to improve UX.
+A feature-rich food ordering app built with React.js, featuring live Swiggy API integration, 
+Redux-powered cart management, and a polished user experience.
 
-Dual-State Filtering: Implemented a "Master Copy" vs. "Filtered Copy" pattern to allow instant UI updates without extra API calls.
+## 🔗 Live Demo
+[foodsathi.vercel.app](https://food-ordering-app-using-react-two.vercel.app/)
 
-Dynamic Data Extraction: Uses the JavaScript .find() method to robustly navigate complex nested JSON structures.
+ScreenShots 
+<img width="1837" height="933" alt="image" src="https://github.com/user-attachments/assets/2c84ee17-8a14-4f61-af7e-2772ce2ab14f" />
+<img width="1845" height="910" alt="image" src="https://github.com/user-attachments/assets/945a9fd6-5574-40e8-8698-86ec837be261" />
+<img width="1841" height="911" alt="image" src="https://github.com/user-attachments/assets/fa7ada18-6b3c-49a5-a73d-6576599401a7" />
+<img width="1827" height="889" alt="image" src="https://github.com/user-attachments/assets/9eb01859-f5c1-4de0-9945-d7c5abe20fbf" />
+<img width="1843" height="877" alt="image" src="https://github.com/user-attachments/assets/246ee872-f4bb-4816-a403-35ae46ac4e77" />
+<img width="1856" height="899" alt="image" src="https://github.com/user-attachments/assets/e2bf83ef-5fde-4a1e-9f6e-735f1f7ea9c3" />
 
-Responsive Design: A clean, mobile-friendly grid layout built with Flexbox.
 
-🛠️ Tech Stack
-Library: React.js (Hooks: useState, useEffect)
+## ✨ Features
+- 🔍 **Real-time Search** — Instant filtering as you type
+- 🛒 **Smart Cart** — Add, remove, increment/decrement items with quantity tracking
+- 📊 **Bill Calculator** — Auto-calculates subtotal, delivery fee, and 5% GST
+- 🔐 **User Auth** — Login/Logout flow with Redux state management
+- 📱 **Responsive Design** — Works on mobile and desktop
+- ⚡ **Shimmer UI** — Skeleton loading for better UX
+- 🌐 **Online/Offline Detection** — Custom hook for network status
+- 🎯 **Filter System** — Top Rated & Fast Delivery filters
 
-Bundler: Parcel (Zero Config)
+## 🛠️ Tech Stack
+| Technology | Purpose |
+|---|---|
+| React 19 | UI Library |
+| Redux Toolkit | Global State Management |
+| React Router v6 | Client-side Routing |
+| Parcel | Module Bundler |
+| Swiggy API | Restaurant Data |
+| Vercel | Deployment |
+| CSS3 | Styling (custom, no frameworks) |
 
-Styling: Custom CSS3 (BEM-inspired naming)
+## 🏗️ Architecture
+- **Custom Hooks**: `useRestaurants`, `useRestaurantMenu`, `useOnlineStatus`
+- **Redux Store**: Cart slice (CRUD operations), Auth slice
+- **Utility Layer**: Filter helpers, constants, mock data fallback
 
-Data Handling: Fetch API, Async/Await, Optional Chaining
-
-📂 Project Structure
-Plaintext
-/src
-  /components
-    - Header.js
-    - Body.js
-    - ResCard.js
-    - Shimmer.js
-  /utils
-    - constants.js
-    - mockData.js
-  - App.js
-  - index.css
-💡 What I Learned 
-State vs. Variables: Understood why useState is required to trigger UI re-renders.
-
-Side Effects: Mastered useEffect to handle API calls and prevent infinite render loops.
-
-Performance: Used the key prop in .map() to help React's reconciliation algorithm.
-
-UX Design: Built a Shimmer UI to solve the "blank screen" problem during data transit.
-
-🏁 How to Run
-Clone the repo: git clone 
-
-Install dependencies: npm install
-
-Start the app: npx parcel index.html
+## 🚀 How to Run
+git clone https://github.com/your-username/FoodSathi.git
+cd FoodSathi
+npm install
+npm start
